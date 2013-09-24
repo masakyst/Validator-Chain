@@ -118,25 +118,34 @@ __END__
 
 =head1 NAME
 
-Validator::Chain - It's new $module
+Validator::Chain - method chain validation library 
 
 =head1 SYNOPSIS
 
     use Validator::Chain;
+    my $validator = Validator::Chain->new;
+    $validator->check("", "name")->required("is invalid");
+    print "error numbers: ", $validator->errors_to_i, "\n";
+    print "error messages: \n";
+    foreach my $message (@{ $validator->errors() }) {
+        print $message, "\n";
+    }
+
 
 =head1 DESCRIPTION
 
-Validator::Chain is ...
+Validator::Chain is a simple validation of methods chain
 
 =head1 LICENSE
 
-Copyright (C) masaaki saito.
+Copyright (C) masakyst.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
+
 =head1 AUTHOR
 
-masaaki saito E<lt>masakyst.public@gmail.comE<gt>
+Masaaki Saito <masakyst.public@gmail.com>
 
 =cut
