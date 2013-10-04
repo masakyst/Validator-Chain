@@ -1,6 +1,6 @@
 # NAME
 
-Validator::Chain - method chain validation library 
+Validator::Chain - minimalistic data validator
 
 # SYNOPSIS
 
@@ -14,15 +14,10 @@ Validator::Chain - method chain validation library
     }
 
 
+
 # DESCRIPTION
 
-Validator::Chain is a simple validation of methods chain
-
-
-# SEE ALSO
-
-[FormValidator::Lite](http://search.cpan.org/perldoc?FormValidator::Lite), [Validation::Class](http://search.cpan.org/perldoc?Validation::Class)
-
+Validator::Chain is a verification module which can carry out a method chain. 
 
 # LICENSE
 
@@ -33,4 +28,4 @@ it under the same terms as Perl itself.
 
 # AUTHOR
 
-Masaaki Saito <masakyst.public@gmail.com>
+masakyst <masakyst.public@gmail.com>

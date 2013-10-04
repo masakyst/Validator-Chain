@@ -17,14 +17,14 @@ sub new {
     my $class = shift;
     my $self = {
         record    => Validator::Chain::Record->new,
-        scope     => Validator::Chain::Scope->new, # validation scope(group)
+        scope     => Validator::Chain::Scope->new, 
         debug     => 0,
     };
     bless $self, $class;
     return $self;
 }
 
-# カスタム制約をload(FVLパクリ
+# from FVL 
 sub load_constraints {
     my $class = shift;
     for (@_) {
@@ -35,19 +35,16 @@ sub load_constraints {
     return $class;
 }
 
-# error messages
 sub errors {
     my ($self) = @_;
     return $self->{scope}->errors;
 }
 
-# errors number
 sub errors_to_i {
    my ($self) = @_;
    return scalar @{$self->errors()};
 }
 
-# check data record
 sub check {
     my ($self, $val, $label) = @_;
     $label = defined $label ? $label : ''; # defined-or
@@ -56,14 +53,12 @@ sub check {
     return $self;
 }
 
-# data is not required
 sub not_required {
     my ($self) = @_;
     $self->{record}->{required} = 0;
     return $self;
 }
 
-# add/make rule
 sub add_rule {
     my ($self, $rule_key) = @_;
     $self->{record}->{make_rule} = $rule_key; # make_rule now!
@@ -72,17 +67,15 @@ sub add_rule {
     return $self;
 }
 
-# check rule
 sub rule {
     my ($self, $rule_key) = @_;
-    $self->{record}->{make_rule} = ''; # make_rule init
+    $self->{record}->{make_rule} = '';
     $Validator::Chain::RULES->{$rule_key}->each(sub { 
         my ($method, $args) = @_;
         $self->$method(@{$args});
     });
 }
 
-# validation scoped group
 sub group {
     my ($self) = @_;
     my $scope = Validator::Chain::Scope->new;
@@ -97,7 +90,6 @@ sub scope {
     return $self->group();
 }
 
-# clear validation scope / error messeges
 sub clear {
     my $self = shift;
     $self->{scope} = Validator::Chain::Scope->new;
@@ -109,8 +101,6 @@ sub debug {
     Carp::carp($msg) if $self->{debug}; 
 }
 
-
-
 1;
 __END__
 
@@ -118,7 +108,7 @@ __END__
 
 =head1 NAME
 
-Validator::Chain - method chain validation library 
+Validator::Chain - minimalistic data validator
 
 =head1 SYNOPSIS
 
@@ -134,7 +124,7 @@ Validator::Chain - method chain validation library
 
 =head1 DESCRIPTION
 
-Validator::Chain is a simple validation of methods chain
+Validator::Chain is a verification module which can carry out a method chain. 
 
 =head1 LICENSE
 
@@ -146,6 +136,6 @@ it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Masaaki Saito <masakyst.public@gmail.com>
+masakyst <masakyst.public@gmail.com>
 
 =cut

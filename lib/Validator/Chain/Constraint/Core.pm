@@ -10,7 +10,7 @@ constraint 'required' => sub {
     my ($val) = @_;
     return 0 if not defined($val);
     return 0 if $val eq ""; 
-    #return 0 if ref($val) eq 'ARRAY' && @$_ == 0; #todo: FVL, Kossy::Validator
+    #return 0 if ref($val) eq 'ARRAY' && @$_ == 0; #todo: see FVL, Kossy::Validator
     return 1;
 };
 

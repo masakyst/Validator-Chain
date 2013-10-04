@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "method chain validation library ",
    "author" : [
       "Masaaki Saito <masakyst.public@gmail.com>"
    ],
@@ -42,7 +42,11 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.008005"
+            "Class::Load" : "0",
+            "Email::Valid" : "0",
+            "Email::Valid::Loose" : "0",
+            "Hash::MultiValue" : "0",
+            "Scalar::Util" : "0"
          }
       },
       "test" : {
@@ -52,5 +56,16 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/masakyst/Validator-Chain/issues"
+      },
+      "homepage" : "https://github.com/masakyst/Validator-Chain",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/masakyst/Validator-Chain.git",
+         "web" : "https://github.com/masakyst/Validator-Chain"
+      }
+   },
    "version" : "0.01"
 }

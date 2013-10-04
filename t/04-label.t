@@ -1,12 +1,10 @@
 use strict;
 use warnings;
 use Test::More;
-#use Test::Flatten;
 use Validator::Chain;
 
 my $validator = Validator::Chain->new;
 
-# required
 $validator->check("", "name")->required(" is required");
 is(1, $validator->errors_to_i, 'required failed');
 is('name is required', $validator->errors()->[0]);

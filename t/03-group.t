@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use Test::More;
-#use Test::Flatten;
 use Validator::Chain;
 
 my $validator = Validator::Chain->new;
@@ -14,7 +13,7 @@ my $validator = Validator::Chain->new;
     $validator->check("123456")->required("number is required")->length("number 1 from 5 length", 1, 5);
     is(2, $validator->errors_to_i);
     is('number 1 from 5 length', $validator->errors()->[1]);
-    $validator->check('helloworld@example.com')->required("email is required")->length("email 1 from 50 length", 1, 50)
+    $validator->check('helloworld@moridehitotsuki.com')->required("email is required")->length("email 1 from 50 length", 1, 50)
         ->email_loose('email not valid');
     is(2, $validator->errors_to_i);
 }

@@ -3,7 +3,7 @@ package Validator::Chain::Constraint;
 use strict;
 use warnings;
 
-# import constraint function
+# import constraints
 sub import {
     strict->import;
     warnings->import;
@@ -37,11 +37,11 @@ sub _constraint {
         return $self unless $self->{record}->{chain}; # stoped chain
         $self->debug("chain: continue");
 
-        $msg //= "no valid!!!"; # set default error message todo: perl5.8.8 higher!!!!
+        $msg //= "no valid!!!"; # set default error message todo: perl5.8.8 higher
 
         # call original constraint coderef
         my @constraint_args = @_;
-        unshift @constraint_args, $record->{data}->{value}; #todo: why unshift?
+        unshift @constraint_args, $record->{data}->{value};
         if ($constraint_coderef->(@constraint_args)) {
             $self->debug("validate: success [${name}]");
         }

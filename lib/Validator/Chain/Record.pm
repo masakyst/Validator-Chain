@@ -10,14 +10,10 @@ sub new {
         data      => \%value_label,
         chain     => 1,
         required  => 1,
-        make_rule => '', # todo: why string?
+        make_rule => '',
     };  
     bless $self, $class;
     return $self;
-}
-
-sub DESTROY {
-    my $self = shift;
 }
 
 1;

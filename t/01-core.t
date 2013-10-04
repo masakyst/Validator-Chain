@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use Test::More;
-#use Test::Flatten;
 use Validator::Chain;
 
 my $validator = Validator::Chain->new;
@@ -56,10 +55,10 @@ $validator->clear();
 $validator->check("")->email("email error");
 is(1, $validator->errors_to_i, 'email failed');
 $validator->clear();
-$validator->check('foo..bar.@example.com')->email("email error");
+$validator->check('foo..bar.@moridehitotsuki.com')->email("email error");
 is(1, $validator->errors_to_i, 'email failed');
 $validator->clear();
-$validator->check('foobar@example.com')->email("email error");
+$validator->check('foobar@moridehitotsuki.com')->email("email error");
 is(0, $validator->errors_to_i, 'email success');
 $validator->clear();
 
@@ -67,10 +66,10 @@ $validator->clear();
 $validator->check("")->email_loose("email_loose error");
 is(1, $validator->errors_to_i, 'email_loose failed');
 $validator->clear();
-$validator->check('foo..bar.@example.com')->email_loose("email_loose error");
+$validator->check('foo..bar.@moridehitotsuki.com')->email_loose("email_loose error");
 is(0, $validator->errors_to_i, 'email_loose success');
 $validator->clear();
-$validator->check('foobar@example.com')->email_loose("email_loose error");
+$validator->check('foobar@moridehitotsuki.com')->email_loose("email_loose error");
 is(0, $validator->errors_to_i, 'email_loose success');
 $validator->clear();
 

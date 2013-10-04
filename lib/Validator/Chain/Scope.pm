@@ -7,7 +7,6 @@ sub new {
     bless {errors => []}, shift;
 }
 
-# error messages attr
 sub errors {
     my ($self, $errors) = @_; 
     if (defined $errors) {
@@ -16,9 +15,4 @@ sub errors {
     return $self->{errors};
 }
 
-# unscoped flush!
-sub DESTROY {
-    my $self = shift;
-}
-
-1
+1;
