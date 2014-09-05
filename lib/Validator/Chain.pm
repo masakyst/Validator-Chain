@@ -47,7 +47,8 @@ sub errors_to_i {
 
 sub check {
     my ($self, $val, $label) = @_;
-    $label = defined $label ? $label : ''; # defined-or
+    $self->{scope} //= Validator::Chain::Scope->new;
+    $label //= '';
     $self->debug("check: value=${val}, label=${label}");
     $self->{record} = Validator::Chain::Record->new(value => $val, label => $label); # initialize record
     return $self;
@@ -62,8 +63,7 @@ sub not_required {
 sub add_rule {
     my ($self, $rule_key) = @_;
     $self->{record}->{make_rule} = $rule_key; # make_rule now!
-    $Validator::Chain::RULES->{$rule_key} = defined $Validator::Chain::RULES->{$rule_key} 
-        ? $Validator::Chain::RULES->{$rule_key} : Hash::MultiValue->new ; # defined-or 
+    $Validator::Chain::RULES->{$rule_key} //= Hash::MultiValue->new;
     return $self;
 }
 
@@ -80,14 +80,8 @@ sub group {
     my ($self) = @_;
     my $scope = Validator::Chain::Scope->new;
     $self->{scope} = $scope;
-    weaken($self->{scope}); #本当に必要？
+    weaken($self->{scope});
     return $self->{scope};
-}
-
-# alias group
-sub scope {
-    my $self = shift;
-    return $self->group();
 }
 
 sub clear {

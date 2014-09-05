@@ -13,8 +13,6 @@ Validator::Chain - minimalistic data validator
         print $message, "\n";
     }
 
-
-
 # DESCRIPTION
 
 Validator::Chain is a verification module which can carry out a method chain. 

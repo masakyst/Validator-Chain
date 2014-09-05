@@ -37,7 +37,7 @@ sub _constraint {
         return $self unless $self->{record}->{chain}; # stoped chain
         $self->debug("chain: continue");
 
-        $msg //= "no valid!!!"; # set default error message todo: perl5.8.8 higher
+        $msg //= "no valid!!!";
 
         # call original constraint coderef
         my @constraint_args = @_;
@@ -48,7 +48,9 @@ sub _constraint {
         else {
             $self->debug("validate: failed [${name}]");
             my $errors = $self->{scope}->errors();
-            push @{$errors}, $record->{data}->{label}.$msg; 
+            my $padding = '';
+            if (length $record->{data}->{label} > 0) { $padding = ' '; }
+            push @{$errors}, $record->{data}->{label}.$padding.$msg; 
             $self->{scope}->errors($errors);
             $self->{record}->{chain} = 0;
             $self->debug("chain: stop");
